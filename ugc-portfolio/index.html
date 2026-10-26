@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UGC Creator</title>
+<meta name="description" content="תיק עבודות UGC: סרטונים אותנטיים למותגים.">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>תיק עבודות UGC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Frank+Ruhl+Libre:wght@300..700&family=Assistant:wght@300..700&family=Mrs+Saint+Delafield&display=swap">
@@ -287,24 +288,24 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
+
+  /* Content-driven page: fade in once the content files have loaded */
+  .site { transition: opacity .35s ease; }
+  .site[data-state="loading"] { opacity: 0; }
+  .brands .logo { display: grid; place-items: center; min-height: 72px; }
+  .brands .logo img { max-height: 54px; max-width: 100%; object-fit: contain; }
+  .screen video { cursor: pointer; }
 </style>
 </head>
 <body>
-
 <!--
-  איך לערוך (פירוט מלא ב-README.md):
-  - כל טקסט בסוגריים מרובעים [ ... ], "Your Name" והמחירים ₪000 מחכים לפרטים שלכם.
-  - תמונה ראשית: me.png ליד הקובץ, ובתוך <div class="arch"> החליפו את <div class="hint">...</div> בשורה <img src="me.png" alt="השם שלך">
-  - תמונה שנייה (פולרויד): me2.jpg, ובתוך <div class="shot"> החליפו את הטקסט בשורה <img src="me2.jpg" alt="">
-  - סרטון: בכל טלפון החליפו <div class="scene ..."></div> בשורה
-        <video src="videos/clip1.mp4" muted loop playsinline preload="metadata"></video>
-    הכתוביות וכפתור ה-play יוסתרו אוטומטית, והסרטון יתנגן לבד כשהוא מופיע במסך.
+  This page is filled from the files in content/. Edit them through the admin panel at /admin, not here.
 -->
-<div class="site" dir="rtl" lang="he">
+<div class="site" dir="rtl" lang="he" data-state="loading">
 
   <div class="wrap">
     <nav class="nav" aria-label="ניווט ראשי">
-      <a class="monogram en" href="#top">Your <em>Name</em></a>
+      <a class="monogram en" href="#top" data-name="inline"></a>
       <div class="nav-links">
         <a href="#about">עליי</a>
         <a href="#work">עבודות</a>
@@ -315,25 +316,25 @@
 
     <header class="hero" id="top">
       <div class="hero-copy">
-        <span class="kicker en">Content creator · Israel</span>
-        <h1 class="display"><span class="en">Your</span><span class="en"><em>Name</em></span></h1>
+        <span class="kicker en" data-bind="kicker"></span>
+        <h1 class="display" data-name="stack"></h1>
         <p class="role"><span>UGC Creator</span></p>
-        <p class="tagline">סרטונים אותנטיים שמרגישים כמו המלצה של חבר ועוצרים את הגלילה. ביוטי, אופנה ולייפסטייל, מוכנים לרשתות ולמודעות.</p>
+        <p class="tagline" data-bind="tagline"></p>
         <div class="actions">
           <a class="btn btn-solid" href="#work">לצפייה בעבודות</a>
           <a class="btn btn-line" href="#contact">לשיתוף פעולה</a>
         </div>
         <div class="socials">
-          <a href="https://instagram.com/" target="_blank" rel="noopener"><span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7"/></svg></span><span class="value">@your_handle</span></a>
-          <a href="mailto:you@example.com"><span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.8 7 12 13l8.2-6"/></svg></span><span class="value">you@example.com</span></a>
+          <a data-link="instagram" target="_blank" rel="noopener"><span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7"/></svg></span><span class="value" data-show="instagram"></span></a>
+          <a data-link="email"><span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.8 7 12 13l8.2-6"/></svg></span><span class="value" data-show="email"></span></a>
         </div>
       </div>
 
       <div class="portrait">
-        <div class="arch">
+        <div class="arch" id="photo">
           <div class="hint"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="13" width="36" height="26" rx="4"/><circle cx="24" cy="26" r="7"/><path d="M17 13l3-5h8l3 5"/></svg>התמונה שלך כאן</div>
         </div>
-        <div class="badge" aria-hidden="true">
+        <div class="badge" id="badge" aria-hidden="true">
           <svg viewBox="0 0 132 132"><defs><path id="badge-ring" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs><text><textPath href="#badge-ring" textLength="312" lengthAdjust="spacing">AVAILABLE FOR COLLABS · AVAILABLE FOR COLLABS ·</textPath></text></svg>
           <span class="star">✦</span>
         </div>
@@ -342,29 +343,26 @@
   </div>
 
   <div class="ribbon" aria-hidden="true">
-    <div class="ribbon-track">
-      <span>Beauty</span><span>✦</span><span>Fashion</span><span>✦</span><span>Skincare</span><span>✦</span><span>Lifestyle</span><span>✦</span><span>Home</span><span>✦</span><span>Food</span><span>✦</span>
-      <span>Beauty</span><span>✦</span><span>Fashion</span><span>✦</span><span>Skincare</span><span>✦</span><span>Lifestyle</span><span>✦</span><span>Home</span><span>✦</span><span>Food</span><span>✦</span>
-    </div>
+    <div class="ribbon-track" id="ribbon"></div>
   </div>
 
   <div class="wrap">
     <section class="section about" id="about" aria-labelledby="about-title">
       <figure class="polaroid">
-        <div class="shot">תמונה נוספת שלך</div>
-        <figcaption>hello there</figcaption>
+        <div class="shot" id="photo2">תמונה נוספת שלך</div>
+        <figcaption data-bind="polaroid_caption"></figcaption>
       </figure>
       <div class="about-copy">
         <span class="kicker en">Nice to meet you</span>
         <h2 class="display" id="about-title"><span class="en">About <em>me</em></span></h2>
-        <p class="lead"><strong>היי, אני [השם שלך].</strong> התוכן שלי טבעי ובגובה העיניים, כמו שיחה עם חברים. כל סרטון מתחיל מהמותג, מהקהל ומהמסר, ונבנה כדי שאנשים יעצרו, יקשיבו ויתחברו למוצר.</p>
+        <p class="lead"><strong data-bind="about_intro"></strong> <span data-bind="about"></span></p>
         <dl class="facts">
-          <div><dt>Based in</dt><dd>[עיר]</dd></div>
-          <div><dt>Age</dt><dd>[גיל]</dd></div>
-          <div><dt>Languages</dt><dd>עברית · English</dd></div>
-          <div><dt>Delivery</dt><dd>5–7 ימי עבודה</dd></div>
+          <div data-fact="city"><dt>Based in</dt><dd data-bind="city"></dd></div>
+          <div data-fact="age"><dt>Age</dt><dd data-bind="age"></dd></div>
+          <div data-fact="languages"><dt>Languages</dt><dd data-bind="languages"></dd></div>
+          <div data-fact="delivery"><dt>Delivery</dt><dd data-bind="delivery"></dd></div>
         </dl>
-        <p class="signature">Your Name</p>
+        <p class="signature" data-name="plain"></p>
       </div>
     </section>
 
@@ -374,136 +372,31 @@
         <h2 class="display" id="work-title"><span class="en">My <em>works</em></span></h2>
         <p class="he">מבחר סרטונים שצילמתי למותגים</p>
       </div>
-
-      <div class="phones">
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-skin"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">אחרי הייבוש השיער מרגיש אחרת</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">סרום לשיער · שגרת טיפוח</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>טיפוח שיער</span></figcaption>
-        </figure>
-
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-style"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">פריט אחד, שלושה לוקים</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">ג'ינס רחב · סטיילינג</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>אופנה</span></figcaption>
-        </figure>
-
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-spa"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">שגרת הבוקר שלי</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">קרם לחות · טיפוח פנים</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>טיפוח פנים</span></figcaption>
-        </figure>
-
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-app"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">ככה זה עובד באמת</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">אפליקציה · הדגמה</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>שירות / אפליקציה</span></figcaption>
-        </figure>
-
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-box"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">תראו מה הגיע לי</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">אנבוקסינג · מארז מתנה</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>אנבוקסינג</span></figcaption>
-        </figure>
-
-        <figure class="work">
-          <div class="iphone"><div class="bezel"><div class="screen">
-            <div class="scene scene-food"></div>
-            <span class="island"></span><span class="play"></span>
-            <div class="ui" aria-hidden="true">
-              <div class="status"><span>9:41</span><i></i></div>
-              <p class="sub">לא ציפיתי שזה יהיה כל כך טוב</p>
-              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
-              <div class="who"><span class="handle">your_handle</span><span class="cap">טעימה ראשונה · קינוח</span></div>
-              <span class="progress"></span>
-            </div>
-          </div></div></div>
-          <figcaption><b>[Brand]</b><span>אוכל</span></figcaption>
-        </figure>
-      </div>
+      <div class="phones" id="works"></div>
     </section>
 
-    <section class="section" aria-labelledby="kinds-title">
+    <section class="section" id="kinds-section" aria-labelledby="kinds-title">
       <div class="section-head">
         <span class="kicker en">Services</span>
         <h2 class="display" id="kinds-title"><span class="en">What I <em>create</em></span></h2>
       </div>
-      <div class="kinds">
-        <div class="kind"><span class="en">Unboxing</span><h3>אנבוקסינג</h3><p>הרגע של פתיחת החבילה, האריזה והתגובה הראשונה.</p></div>
-        <div class="kind"><span class="en">Product review</span><h3>ביקורת מוצר</h3><p>חוויית שימוש אמיתית: מה עובד, ולמי זה מתאים.</p></div>
-        <div class="kind"><span class="en">Before &amp; after</span><h3>לפני ואחרי</h3><p>תוצאה שרואים בעיניים, אחרי ימים או שבועות של שימוש.</p></div>
-        <div class="kind"><span class="en">Tutorial</span><h3>מדריך שימוש</h3><p>איך משתמשים במוצר, צעד אחר צעד, בפחות מדקה.</p></div>
-        <div class="kind"><span class="en">Lifestyle</span><h3>לייפסטייל</h3><p>המוצר בתוך היום־יום: בוקר, עבודה, יציאה.</p></div>
-        <div class="kind"><span class="en">Talking head</span><h3>דיבור למצלמה</h3><p>המלצה ישירה ואישית, עם פתיח שתופס מהשנייה הראשונה.</p></div>
-      </div>
+      <div class="kinds" id="kinds"></div>
     </section>
 
-    <section class="section" aria-labelledby="brands-title">
+    <section class="section" id="brands-section" aria-labelledby="brands-title">
       <div class="section-head">
         <span class="kicker en">Trusted by</span>
         <h2 class="display" id="brands-title"><span class="en">Brands I <em>loved</em></span></h2>
       </div>
-      <div class="brands">
-        <span>[Brand]</span><span>[Brand]</span><span>[Brand]</span><span>[Brand]</span><span>[Brand]</span>
-      </div>
+      <div class="brands" id="brands"></div>
     </section>
 
-    <section class="section" aria-labelledby="process-title">
+    <section class="section" id="steps-section" aria-labelledby="process-title">
       <div class="section-head">
         <span class="kicker en">Process</span>
         <h2 class="display" id="process-title"><span class="en">How we <em>work</em></span></h2>
       </div>
-      <ol class="steps">
-        <li><b>בריף</b><span>מספרים לי על המוצר, על קהל היעד ועל המסר.</span></li>
-        <li><b>תסריט ופתיחים</b><span>תסריט קצר וכמה פתיחים לבחירה, לאישור שלכם.</span></li>
-        <li><b>צילום ועריכה</b><span>תאורה טבעית, כתוביות, מוזיקה וקצב של רשת.</span></li>
-        <li><b>מסירה</b><span>קבצים אנכיים באיכות גבוהה וסבב תיקונים אחד.</span></li>
-      </ol>
+      <ol class="steps" id="steps"></ol>
     </section>
 
     <section class="section" id="packages" aria-labelledby="packages-title">
@@ -511,28 +404,8 @@
         <span class="kicker en">Rates</span>
         <h2 class="display" id="packages-title"><span class="en"><em>Packages</em></span></h2>
       </div>
-      <div class="packages">
-        <article class="pkg">
-          <h3 class="name">Single</h3>
-          <p class="he">סרטון בודד</p>
-          <p class="price">₪000</p>
-          <ul><li>סרטון אחד, 15–30 שניות</li><li>פתיח אחד</li><li>כתוביות בעברית</li><li>סבב תיקונים אחד</li></ul>
-        </article>
-        <article class="pkg featured">
-          <span class="flag">הכי מבוקש</span>
-          <h3 class="name">The <em>Trio</em></h3>
-          <p class="he">חבילת 3 סרטונים</p>
-          <p class="price">₪000</p>
-          <ul><li>3 סרטונים בסגנונות שונים</li><li>2 פתיחים לכל סרטון</li><li>כתוביות ומוזיקה</li><li>זכויות שימוש אורגני ל־3 חודשים</li></ul>
-        </article>
-        <article class="pkg">
-          <h3 class="name">Monthly</h3>
-          <p class="he">ליווי חודשי</p>
-          <p class="price">₪000 <small>/ חודש</small></p>
-          <ul><li>6 סרטונים בחודש</li><li>תכנון תוכן משותף</li><li>קבצים גולמיים</li><li>עדיפות במועדי מסירה</li></ul>
-        </article>
-      </div>
-      <p class="addons"><b>תוספות לפי בקשה:</b> זכויות למודעות ממומנות · פתיחים נוספים · מסירה תוך 72 שעות · צילומי מוצר</p>
+      <div class="packages" id="package-list"></div>
+      <p class="addons" id="addons"><b>תוספות לפי בקשה:</b> <span></span></p>
     </section>
   </div>
 
@@ -540,50 +413,219 @@
     <div class="wrap">
       <span class="kicker en">Get in touch</span>
       <h2 class="display" id="contact-title"><span class="en">Let's create something <em>beautiful</em></span></h2>
-      <p class="lead">יש לכם מוצר או שירות? ספרו לי עליו ואחזור אליכם עם רעיונות והצעת מחיר תוך יום עבודה.</p>
+      <p class="lead" data-bind="contact_lead"></p>
       <div class="cards">
-        <a class="card" href="https://instagram.com/" target="_blank" rel="noopener">
+        <a class="card" data-link="instagram" target="_blank" rel="noopener">
           <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7"/></svg></span>
-          <span class="label en">Instagram</span><span class="value">@your_handle</span>
+          <span class="label en">Instagram</span><span class="value" data-show="instagram"></span>
         </a>
-        <a class="card" href="mailto:you@example.com">
+        <a class="card" data-link="email">
           <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.8 7 12 13l8.2-6"/></svg></span>
-          <span class="label en">Email</span><span class="value">you@example.com</span>
+          <span class="label en">Email</span><span class="value" data-show="email"></span>
         </a>
-        <a class="card" href="tel:+972500000000">
+        <a class="card" data-link="phone">
           <span class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.6 3.8 9.9 7.7 8.3 9.4a10.5 10.5 0 0 0 6.3 6.3l1.7-1.6 3.9 2.3-1 3a2 2 0 0 1-2.1 1.3C10.5 19.9 4.1 13.5 3.3 6.9a2 2 0 0 1 1.3-2.1z"/></svg></span>
-          <span class="label en">Phone</span><span class="value">050-000-0000</span>
+          <span class="label en">Phone</span><span class="value" data-show="phone"></span>
         </a>
       </div>
-      <a class="btn btn-solid" href="https://wa.me/972500000000" target="_blank" rel="noopener">שלחו לי הודעה בוואטסאפ</a>
+      <a class="btn btn-solid" data-link="whatsapp" target="_blank" rel="noopener">שלחו לי הודעה בוואטסאפ</a>
     </div>
   </section>
 
   <footer>
-    <div class="footer-name">Your Name</div>
+    <div class="footer-name" data-name="plain"></div>
     <div class="wrap footer-row">
-      <span class="en">© 2026 Your Name · UGC Creator</span>
+      <span class="en">© <span id="year"></span> <span data-name="plain"></span> · UGC Creator</span>
       <a href="#top">חזרה למעלה ↑</a>
     </div>
   </footer>
 </div>
 
 <script>
-  // Real videos: mark their screen, play muted while on screen, tap to toggle sound
-  document.querySelectorAll('.screen video').forEach(function (video) {
-    var screen = video.closest('.screen');
-    screen.classList.add('has-video');
-    video.muted = true;
-    screen.addEventListener('click', function () { video.muted = !video.muted; if (video.paused) video.play().catch(function () {}); });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) video.play().catch(function () {});
-          else video.pause();
-        });
-      }, { threshold: 0.5 }).observe(video);
-    }
+(function () {
+  var FILES = ['profile', 'works', 'packages', 'more'];
+  var SCENES = ['scene-skin', 'scene-style', 'scene-spa', 'scene-app', 'scene-box', 'scene-food'];
+  var RAIL = '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>' +
+    '<svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.3A8 8 0 1 1 20 11.5z"/></svg>' +
+    '<svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg>';
+  var site = document.querySelector('.site');
+
+  // Small DOM helper: el('p', {class: 'x'}, ['text', child])
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (attrs[k] !== undefined && attrs[k] !== null && attrs[k] !== false) node.setAttribute(k, attrs[k] === true ? '' : attrs[k]);
+    });
+    (children || []).forEach(function (c) { node.append(c); });
+    return node;
+  }
+  function each(selector, fn) { document.querySelectorAll(selector).forEach(fn); }
+  function text(v) { return (v === undefined || v === null) ? '' : String(v).trim(); }
+  function setList(id, items, build) {
+    var box = document.getElementById(id);
+    box.replaceChildren.apply(box, items.map(build));
+  }
+  function showSection(id, visible) { document.getElementById(id).hidden = !visible; }
+  // "The Trio" -> "The " + <em>Trio</em>
+  function lastWordItalic(value) {
+    var words = text(value).split(/\s+/);
+    var last = words.pop();
+    return words.length ? [words.join(' ') + ' ', el('em', {}, [last])] : [last];
+  }
+
+  function cleanHandle(v) {
+    return text(v).replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@/, '').replace(/[/?#].*$/, '');
+  }
+  // 050-123-4567 -> 972501234567 for WhatsApp
+  function intlPhone(v) {
+    var d = text(v).replace(/\D/g, '');
+    if (d.indexOf('00') === 0) d = d.slice(2);
+    if (d.charAt(0) === '0') d = '972' + d.slice(1);
+    return d;
+  }
+
+  function renderProfile(p) {
+    var first = text(p.first_name), last = text(p.last_name);
+    document.title = [first, last].filter(Boolean).join(' ') + ' · UGC Creator';
+    each('[data-name]', function (node) {
+      var mode = node.getAttribute('data-name');
+      if (mode === 'stack') node.replaceChildren(el('span', {class: 'en'}, [first]), el('span', {class: 'en'}, [el('em', {}, [last])]));
+      else if (mode === 'inline') node.replaceChildren(first + ' ', el('em', {}, [last]));
+      else node.textContent = [first, last].filter(Boolean).join(' ');
+    });
+    each('[data-bind]', function (node) { node.textContent = text(p[node.getAttribute('data-bind')]); });
+    each('[data-fact]', function (node) { node.hidden = !text(p[node.getAttribute('data-fact')]); });
+
+    var handle = cleanHandle(p.instagram), email = text(p.email), phone = text(p.phone), intl = intlPhone(p.phone);
+    var links = {
+      instagram: handle && 'https://instagram.com/' + handle,
+      email: email && 'mailto:' + email,
+      phone: intl && 'tel:+' + intl,
+      whatsapp: intl && 'https://wa.me/' + intl
+    };
+    var shown = { instagram: handle && '@' + handle, email: email, phone: phone };
+    each('[data-link]', function (node) {
+      var key = node.getAttribute('data-link');
+      node.hidden = !links[key];
+      if (links[key]) node.href = links[key];
+    });
+    each('[data-show]', function (node) { node.textContent = shown[node.getAttribute('data-show')] || ''; });
+
+    if (text(p.photo)) document.getElementById('photo').replaceChildren(el('img', {src: p.photo, alt: [first, last].join(' ')}));
+    if (text(p.photo2)) document.getElementById('photo2').replaceChildren(el('img', {src: p.photo2, alt: ''}));
+    document.getElementById('badge').hidden = p.show_badge === false;
+    document.getElementById('year').textContent = new Date().getFullYear();
+    return handle;
+  }
+
+  function renderWorks(works, handle) {
+    showSection('work', works.length > 0);
+    setList('works', works, function (w, i) {
+      var video = text(w.video);
+      var media = video
+        ? el('video', {src: video, poster: text(w.poster) || null, muted: true, loop: true, playsinline: true, preload: 'metadata'})
+        : el('div', {class: 'scene ' + SCENES[i % SCENES.length]});
+      var rail = el('div', {class: 'rail'}); rail.innerHTML = RAIL;
+      var ui = el('div', {class: 'ui', 'aria-hidden': 'true'}, [
+        el('div', {class: 'status'}, [el('span', {}, ['9:41']), el('i')]),
+        el('p', {class: 'sub'}, [text(w.hook)]),
+        rail,
+        el('div', {class: 'who'}, [el('span', {class: 'handle'}, [handle || 'your_handle']), el('span', {class: 'cap'}, [text(w.caption)])]),
+        el('span', {class: 'progress'})
+      ]);
+      var screen = el('div', {class: 'screen' + (video ? ' has-video' : '')}, [media, el('span', {class: 'island'}), el('span', {class: 'play'}), ui]);
+      if (!text(w.hook)) ui.querySelector('.sub').hidden = true;
+      return el('figure', {class: 'work'}, [
+        el('div', {class: 'iphone'}, [el('div', {class: 'bezel'}, [screen])]),
+        el('figcaption', {}, [el('b', {}, [text(w.brand)]), el('span', {}, [text(w.category)])])
+      ]);
+    });
+  }
+
+  function renderMore(m) {
+    var niches = (m.niches || []).map(text).filter(Boolean);
+    var loop = [];
+    [0, 1].forEach(function () { niches.forEach(function (n) { loop.push(el('span', {}, [n]), el('span', {}, ['✦'])); }); });
+    document.querySelector('.ribbon').hidden = niches.length === 0;
+    document.getElementById('ribbon').replaceChildren.apply(document.getElementById('ribbon'), loop);
+
+    var kinds = m.kinds || [];
+    showSection('kinds-section', kinds.length > 0);
+    setList('kinds', kinds, function (k) {
+      return el('div', {class: 'kind'}, [el('span', {class: 'en'}, [text(k.en)]), el('h3', {}, [text(k.title)]), el('p', {}, [text(k.text)])]);
+    });
+
+    var brands = m.brands || [];
+    showSection('brands-section', brands.length > 0);
+    setList('brands', brands, function (b) {
+      return text(b.logo)
+        ? el('span', {class: 'logo'}, [el('img', {src: b.logo, alt: text(b.name)})])
+        : el('span', {}, [text(b.name)]);
+    });
+
+    var steps = m.steps || [];
+    showSection('steps-section', steps.length > 0);
+    setList('steps', steps, function (s) {
+      return el('li', {}, [el('b', {}, [text(s.title)]), el('span', {}, [text(s.text)])]);
+    });
+  }
+
+  function renderPackages(data) {
+    var list = data.packages || [];
+    showSection('packages', list.length > 0);
+    setList('package-list', list, function (p) {
+      var price = el('p', {class: 'price'}, [text(p.price)]);
+      if (text(p.unit)) price.append(' ', el('small', {}, [text(p.unit)]));
+      var card = el('article', {class: 'pkg' + (p.featured ? ' featured' : '')}, [
+        el('h3', {class: 'name'}, lastWordItalic(p.name)),
+        el('p', {class: 'he'}, [text(p.subtitle)]),
+        price,
+        el('ul', {}, (p.items || []).map(function (it) { return el('li', {}, [text(it)]); }))
+      ]);
+      if (p.featured && text(p.flag)) card.prepend(el('span', {class: 'flag'}, [text(p.flag)]));
+      return card;
+    });
+    var addons = document.getElementById('addons');
+    addons.hidden = !text(data.addons);
+    addons.querySelector('span').textContent = text(data.addons);
+  }
+
+  // Real videos play muted while on screen; a tap toggles the sound
+  function wireVideos() {
+    document.querySelectorAll('.screen video').forEach(function (video) {
+      video.muted = true;
+      video.closest('.screen').addEventListener('click', function () {
+        video.muted = !video.muted;
+        if (video.paused) video.play().catch(function () {});
+      });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) video.play().catch(function () {});
+            else video.pause();
+          });
+        }, { threshold: 0.5 }).observe(video);
+      }
+    });
+  }
+
+  Promise.all(FILES.map(function (name) {
+    return fetch('content/' + name + '.json', { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('content/' + name + '.json: ' + r.status);
+      return r.json();
+    });
+  })).then(function (parts) {
+    var handle = renderProfile(parts[0]);
+    renderWorks(parts[1].works || [], handle);
+    renderPackages(parts[2]);
+    renderMore(parts[3]);
+    wireVideos();
+  }).catch(function (err) {
+    console.error('Could not load the site content', err);
+  }).then(function () {
+    site.setAttribute('data-state', 'ready');
   });
+})();
 </script>
 </body>
 </html>

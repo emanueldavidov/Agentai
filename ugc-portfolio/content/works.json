@@ -1,0 +1,10 @@
+{
+  "works": [
+    { "brand": "[Brand]", "category": "טיפוח שיער", "video": "", "poster": "", "hook": "אחרי הייבוש השיער מרגיש אחרת", "caption": "סרום לשיער · שגרת טיפוח" },
+    { "brand": "[Brand]", "category": "אופנה", "video": "", "poster": "", "hook": "פריט אחד, שלושה לוקים", "caption": "ג'ינס רחב · סטיילינג" },
+    { "brand": "[Brand]", "category": "טיפוח פנים", "video": "", "poster": "", "hook": "שגרת הבוקר שלי", "caption": "קרם לחות · טיפוח פנים" },
+    { "brand": "[Brand]", "category": "שירות / אפליקציה", "video": "", "poster": "", "hook": "ככה זה עובד באמת", "caption": "אפליקציה · הדגמה" },
+    { "brand": "[Brand]", "category": "אנבוקסינג", "video": "", "poster": "", "hook": "תראו מה הגיע לי", "caption": "אנבוקסינג · מארז מתנה" },
+    { "brand": "[Brand]", "category": "אוכל", "video": "", "poster": "", "hook": "לא ציפיתי שזה יהיה כל כך טוב", "caption": "טעימה ראשונה · קינוח" }
+  ]
+}

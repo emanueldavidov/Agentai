@@ -1,0 +1,9 @@
+# Netlify serves the portfolio site straight from its folder; there is no build step.
+[build]
+  publish = "ugc-portfolio"
+
+# Always check for fresh content, so edits from the admin panel show up right away
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

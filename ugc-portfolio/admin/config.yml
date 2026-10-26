@@ -1,0 +1,120 @@
+# Decap CMS settings for the site's admin panel (/admin).
+# Paths are relative to the repository root. If the site moves to its own
+# repository, update `repo`, the `file:` paths and `media_folder`.
+backend:
+  name: github
+  repo: emanueldavidov/agentai
+  branch: main
+  commit_messages:
+    update: "עדכון תוכן: {{slug}}"
+    uploadMedia: "העלאת קובץ: {{path}}"
+    deleteMedia: "מחיקת קובץ: {{path}}"
+
+locale: he
+site_url: /
+display_url: /
+logo_url: ""
+media_folder: ugc-portfolio/uploads
+public_folder: uploads
+
+collections:
+  - name: site
+    label: האתר
+    editor:
+      preview: false
+    files:
+      - name: profile
+        label: "1 · פרטים אישיים ויצירת קשר"
+        file: ugc-portfolio/content/profile.json
+        format: json
+        fields:
+          - { name: first_name, label: "שם פרטי (באנגלית)", widget: string, hint: "מופיע בגדול בראש האתר" }
+          - { name: last_name, label: "שם משפחה (באנגלית)", widget: string, hint: "מופיע באיטליק ורוד מתחת לשם הפרטי" }
+          - { name: kicker, label: "שורה קטנה מעל השם", widget: string, required: false, hint: "למשל: Content creator · Israel" }
+          - { name: tagline, label: "משפט פתיחה", widget: text }
+          - { name: photo, label: "תמונה ראשית", widget: image, required: false, hint: "תמונה לאורך. מומלץ JPG או PNG עד 2MB" }
+          - { name: show_badge, label: "להציג תג 'Available for collabs'", widget: boolean, default: true, required: false }
+          - { name: about_intro, label: "About me: שורת פתיחה מודגשת", widget: string, hint: "למשל: היי, אני נועה." }
+          - { name: about, label: "About me: טקסט", widget: text }
+          - { name: photo2, label: "תמונה נוספת (פולרויד)", widget: image, required: false }
+          - { name: polaroid_caption, label: "כיתוב מתחת לפולרויד (באנגלית)", widget: string, required: false }
+          - { name: city, label: "עיר", widget: string, required: false }
+          - { name: age, label: "גיל", widget: string, required: false }
+          - { name: languages, label: "שפות", widget: string, required: false }
+          - { name: delivery, label: "זמן מסירה", widget: string, required: false }
+          - { name: instagram, label: "שם משתמש באינסטגרם", widget: string, hint: "בלי @ ובלי קישור. למשל: noa_ugc" }
+          - { name: email, label: "אימייל", widget: string }
+          - { name: phone, label: "טלפון", widget: string, hint: "למשל 050-1234567. כפתור הוואטסאפ ייבנה ממנו אוטומטית" }
+          - { name: contact_lead, label: "טקסט באזור יצירת הקשר", widget: text, required: false }
+
+      - name: works
+        label: "2 · סרטונים"
+        file: ugc-portfolio/content/works.json
+        format: json
+        fields:
+          - name: works
+            label: סרטונים
+            label_singular: סרטון
+            widget: list
+            summary: "{{fields.brand}} · {{fields.category}}"
+            hint: "גוררים כדי לשנות סדר. מומלץ מספר זוגי של סרטונים"
+            fields:
+              - { name: video, label: "קובץ הסרטון", widget: file, required: false, hint: "MP4 אנכי, עד 20MB. בלי קובץ יוצג רקע לדוגמה" }
+              - { name: poster, label: "תמונת כיסוי (לא חובה)", widget: image, required: false, hint: "מוצגת עד שהסרטון נטען" }
+              - { name: brand, label: "שם המותג", widget: string }
+              - { name: category, label: "תחום", widget: string, hint: "למשל: טיפוח פנים" }
+              - { name: caption, label: "תיאור קצר על המסך", widget: string, required: false }
+              - { name: hook, label: "כתובית לדוגמה", widget: string, required: false, hint: "מוצגת רק כשאין עדיין קובץ סרטון" }
+
+      - name: packages
+        label: "3 · חבילות ומחירים"
+        file: ugc-portfolio/content/packages.json
+        format: json
+        fields:
+          - name: packages
+            label: חבילות
+            label_singular: חבילה
+            widget: list
+            summary: "{{fields.subtitle}} · {{fields.price}}"
+            fields:
+              - { name: name, label: "שם החבילה (באנגלית)", widget: string, hint: "המילה האחרונה תופיע באיטליק. למשל: The Trio" }
+              - { name: subtitle, label: "תיאור קצר", widget: string }
+              - { name: price, label: "מחיר", widget: string, hint: "למשל: ₪650" }
+              - { name: unit, label: "ליד המחיר (לא חובה)", widget: string, required: false, hint: "למשל: / חודש" }
+              - { name: featured, label: "חבילה מודגשת (רקע כהה)", widget: boolean, default: false, required: false }
+              - { name: flag, label: "תגית מעל החבילה", widget: string, required: false, hint: "למשל: הכי מבוקש" }
+              - { name: items, label: "מה כלול", label_singular: "שורה", widget: list, field: { name: item, label: "שורה", widget: string } }
+          - { name: addons, label: "תוספות (שורה מתחת לחבילות)", widget: string, required: false }
+
+      - name: more
+        label: "4 · תחומים, סוגי תוכן, מותגים ושלבי עבודה"
+        file: ugc-portfolio/content/more.json
+        format: json
+        fields:
+          - { name: niches, label: "תחומים בפס הנע (באנגלית)", label_singular: "תחום", widget: list, field: { name: niche, label: "תחום", widget: string } }
+          - name: kinds
+            label: "סוגי תוכן (What I create)"
+            label_singular: "סוג תוכן"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: en, label: "שם באנגלית", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "תיאור", widget: string }
+          - name: brands
+            label: "מותגים שעבדתי איתם"
+            label_singular: "מותג"
+            widget: list
+            summary: "{{fields.name}}"
+            hint: "אם הרשימה ריקה, האזור לא יוצג באתר"
+            fields:
+              - { name: name, label: "שם המותג", widget: string }
+              - { name: logo, label: "לוגו (לא חובה)", widget: image, required: false, hint: "PNG עם רקע שקוף נראה הכי טוב" }
+          - name: steps
+            label: "שלבי עבודה"
+            label_singular: "שלב"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "תיאור", widget: string }
