@@ -7,7 +7,7 @@
 2. סרט נע עם התחומים שלך (Beauty, Fashion...)
 3. About me: תמונת פולרויד, כמה שורות עליך, פרטים קצרים וחתימה
 4. My works: שישה אייפונים עם ממשק בסגנון Reels
-5. What I create: סוגי התוכן שאת/ה מצלם/ת
+5. What I create: סוגי התוכן שמותגים יכולים להזמין
 6. Brands, How we work (ארבעה שלבים) ו־Packages (שלוש חבילות)
 7. Let's create something beautiful: פרטי קשר וכפתור וואטסאפ
 
