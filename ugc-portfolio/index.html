@@ -9,19 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Frank+Ruhl+Libre:wght@300..700&family=Assistant:wght@300..700&family=Mrs+Saint+Delafield&display=swap">
 <style>
-  /* Layout: a fashion-magazine portfolio. Bodoni titles with italic accents, Hebrew set in Frank Ruhl, work shown inside copper-titanium iPhones on a staggered grid, one espresso band for rhythm. A single warm light theme, chosen on purpose. */
+  /* Layout: a fashion-magazine portfolio in powder pink. Bodoni titles with italic dusty-rose accents, Hebrew set in Frank Ruhl, work shown inside rose-gold iPhones on a staggered grid, one deep plum band for rhythm. A single light theme, chosen on purpose. */
   :root {
-    --paper: #fbf2e9;
-    --paper-deep: #f3e4d6;
-    --sand: #e7d1bd;
-    --ink: #2f2521;
-    --ink-soft: #7b6a61;
-    --hair: #e4cfbe;
-    --copper: #b5683a;
-    --copper-light: #e3a87c;
-    --cream-on-ink: #f6e9dc;
-    --black: #0f0c0b;
-    --white: #fffaf5;
+    --paper: #fcf1f2;
+    --paper-deep: #f6e1e4;
+    --sand: #edcdd2;
+    --ink: #3b2a30;
+    --ink-soft: #876b72;
+    --hair: #edd4d8;
+    --copper: #b25d6e;
+    --copper-light: #eab1ba;
+    --cream-on-ink: #fbeaed;
+    --black: #120d0f;
+    --white: #fffafb;
 
     --font-title: "Bodoni Moda", "Frank Ruhl Libre", Didot, Georgia, serif;
     --font-hebrew: "Frank Ruhl Libre", "David", Georgia, serif;
@@ -122,7 +122,7 @@
 
   /* About */
   .about { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(36px, 7vw, 96px); align-items: center; }
-  .polaroid { justify-self: center; width: min(330px, 100%); background: var(--white); padding: 14px 14px 18px; box-shadow: 0 30px 60px -32px rgba(47, 37, 33, .45); transform: rotate(-3deg); display: grid; gap: 12px; }
+  .polaroid { justify-self: center; width: min(330px, 100%); background: var(--white); padding: 14px 14px 18px; box-shadow: 0 30px 60px -32px rgba(59, 42, 48, .45); transform: rotate(-3deg); display: grid; gap: 12px; }
   .polaroid .shot { aspect-ratio: 4 / 5; max-width: 100%; position: relative; overflow: hidden; background: linear-gradient(160deg, var(--paper-deep), var(--sand)); display: grid; place-items: center; color: var(--ink-soft); font-family: var(--font-hebrew); text-align: center; padding: 16px; }
   .polaroid .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .polaroid figcaption { font-family: var(--font-sign); font-size: 2rem; line-height: 1; text-align: center; color: var(--ink); direction: ltr; }
@@ -148,8 +148,8 @@
   .iphone {
     position: relative; width: 100%; max-width: 290px; padding: 2.6%;
     border-radius: 15.5% / 7.2%;
-    background: linear-gradient(135deg, var(--copper-light) 0%, var(--copper) 22%, #7c4220 48%, var(--copper) 72%, var(--copper-light) 100%);
-    box-shadow: 0 40px 70px -38px rgba(47, 37, 33, .55), inset 0 0 0 1px rgba(255, 236, 220, .35);
+    background: linear-gradient(135deg, var(--copper-light) 0%, var(--copper) 22%, #8a4f5b 48%, var(--copper) 72%, var(--copper-light) 100%);
+    box-shadow: 0 40px 70px -38px rgba(59, 42, 48, .55), inset 0 0 0 1px rgba(255, 232, 236, .45);
     transition: transform .45s cubic-bezier(.2,.7,.2,1);
   }
   .work:hover .iphone { transform: translateY(-8px) rotate(-1deg); }
@@ -162,7 +162,7 @@
   .screen .scene { position: absolute; inset: 0; z-index: 0; }
 
   /* Placeholder scenes: soft, photographic light in each clip's own palette */
-  .scene-skin { background: radial-gradient(60% 40% at 30% 28%, #fbe7da 0%, transparent 70%), radial-gradient(70% 50% at 80% 80%, #b77a5c 0%, transparent 70%), linear-gradient(165deg, #ecc8b2, #9a6550); }
+  .scene-skin { background: radial-gradient(60% 40% at 30% 28%, #fde8ec 0%, transparent 70%), radial-gradient(70% 50% at 80% 80%, #b9737f 0%, transparent 70%), linear-gradient(165deg, #f0c6cd, #9c5b67); }
   .scene-style { background: radial-gradient(50% 35% at 70% 20%, #f4efe9 0%, transparent 70%), radial-gradient(80% 60% at 20% 90%, #7d8a96 0%, transparent 70%), linear-gradient(170deg, #dfe3e4, #8f9aa3); }
   .scene-spa { background: radial-gradient(55% 35% at 25% 25%, #f1fbf8 0%, transparent 70%), radial-gradient(70% 50% at 75% 75%, #6f9a99 0%, transparent 70%), linear-gradient(160deg, #c8dedb, #6b8f90); }
   .scene-app { background: radial-gradient(60% 40% at 70% 25%, #3a4d7a 0%, transparent 70%), radial-gradient(60% 45% at 25% 80%, #1f2a48 0%, transparent 70%), linear-gradient(170deg, #22305a, #121a33); }
@@ -225,7 +225,7 @@
   .pkg.featured { background: var(--ink); color: var(--cream-on-ink); border-color: var(--ink); position: relative; }
   .pkg.featured .he, .pkg.featured .price small { color: var(--sand); }
   .pkg.featured .name em, .pkg.featured li::before { color: var(--copper-light); }
-  .pkg.featured ul { border-top-color: rgba(246, 233, 220, .2); }
+  .pkg.featured ul { border-top-color: rgba(251, 234, 237, .2); }
   .pkg .flag { position: absolute; top: -13px; inset-inline-start: 30px; background: var(--copper); color: var(--white); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; padding: 4px 14px; border-radius: 999px; }
   .addons { margin-top: 26px; text-align: center; color: var(--ink-soft); }
   .addons b { color: var(--ink); }
