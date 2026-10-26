@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>תיק עבודות UGC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+  /* Layout: a creator's phone-first portfolio. Vertical 9:16 frames carry the work; big condensed Hebrew headlines; one berry accent plus a highlighter-yellow marker. */
+  :root {
+    --paper: #fbf6f4;
+    --paper-2: #f3e9e6;
+    --ink: #221a1e;
+    --ink-soft: #6c5a62;
+    --line: #e4d6d2;
+    --berry: #b4235a;
+    --on-berry: #ffffff;
+    --marker: #f4d75e;
+    --frame-a: #e9c9d3;
+    --frame-b: #d8c4e6;
+    --frame-c: #f2dcb8;
+    --frame-ink: #2a1d23;
+    --font-display: "Karantina", "Assistant", "Arial Hebrew", sans-serif;
+    --font-body: "Assistant", "Heebo", "Arial Hebrew", Arial, sans-serif;
+    --step-0: 1.0625rem;
+    --step-1: 1.25rem;
+    --step-2: 1.75rem;
+    --step-3: clamp(2.6rem, 6vw, 3.8rem);
+    --step-4: clamp(3.4rem, 9vw, 6.2rem);
+    --radius: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #171215;
+      --paper-2: #211a1e;
+      --ink: #f4ecef;
+      --ink-soft: #b9a6ae;
+      --line: #3a2e34;
+      --berry: #f0699a;
+      --on-berry: #1a0f14;
+      --marker: #c9a93a;
+      --frame-a: #4a2a37;
+      --frame-b: #3a2d4a;
+      --frame-c: #4a3a22;
+      --frame-ink: #f7eef1;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #171215;
+    --paper-2: #211a1e;
+    --ink: #f4ecef;
+    --ink-soft: #b9a6ae;
+    --line: #3a2e34;
+    --berry: #f0699a;
+    --on-berry: #1a0f14;
+    --marker: #c9a93a;
+    --frame-a: #4a2a37;
+    --frame-b: #3a2d4a;
+    --frame-c: #4a3a22;
+    --frame-ink: #f7eef1;
+    color-scheme: dark;
+  }
+
+  body { background: var(--paper); color: var(--ink); }
+  .site {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 1080px; margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 0.95; margin: 0; text-wrap: balance; letter-spacing: 0.01em; }
+  h2 { font-size: var(--step-3); }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--berry); outline-offset: 3px; border-radius: 6px; }
+  .mark { background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%); padding-inline: 0.08em; }
+  .eyebrow { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--berry); }
+  .lead { color: var(--ink-soft); max-width: 36em; }
+  section { padding-block: clamp(56px, 9vw, 96px); border-top: 1px solid var(--line); }
+  .section-head { display: grid; gap: 12px; margin-bottom: 36px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 700 1rem var(--font-body); text-decoration: none;
+    padding: 12px 22px; border-radius: 999px; border: 2px solid var(--ink);
+    background: transparent; color: var(--ink); cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--berry); border-color: var(--berry); color: var(--on-berry); }
+
+  /* Header */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; flex-wrap: wrap; }
+  .brand { font-family: var(--font-display); font-size: 2rem; font-weight: 700; text-decoration: none; line-height: 1; }
+  .brand small { font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; color: var(--berry); letter-spacing: 0.08em; margin-inline-start: 6px; }
+  .nav { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; }
+  .nav a { text-decoration: none; color: var(--ink-soft); }
+  .nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: 28px 72px; }
+  .hero-text { display: grid; gap: 22px; min-width: 0; }
+  .hero h1 { font-size: var(--step-4); }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .facts li { border: 1px solid var(--line); background: var(--paper-2); border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 0.95rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .phone {
+    position: relative; width: min(300px, 100%); max-width: 100%; aspect-ratio: 9 / 16; justify-self: center;
+    border: 10px solid var(--ink); border-radius: 40px; overflow: hidden;
+    background: linear-gradient(160deg, var(--frame-a), var(--frame-b));
+    transform: rotate(-3deg);
+  }
+  .phone img, .phone video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .phone .portrait-hint { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--frame-ink); font-weight: 700; padding: 24px; }
+  .phone .portrait-hint span { display: block; font-size: 4rem; line-height: 1; font-family: var(--font-display); }
+  .phone .caption { position: absolute; inset-inline: 14px; bottom: 16px; color: var(--frame-ink); font-weight: 700; font-size: 0.95rem; }
+  .phone .side { position: absolute; inset-inline-start: auto; inset-inline-end: 10px; bottom: 70px; display: grid; gap: 14px; justify-items: center; color: var(--frame-ink); font-size: 0.75rem; font-weight: 700; }
+  .phone .side i { display: block; width: 30px; height: 30px; border-radius: 50%; background: color-mix(in srgb, var(--frame-ink) 18%, transparent); }
+
+  /* What is UGC */
+  .why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .why div { display: grid; gap: 8px; align-content: start; }
+  .why h3 { font-size: var(--step-2); }
+  .why p { color: var(--ink-soft); }
+
+  /* Work grid */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filters button { font: 600 0.95rem var(--font-body); padding: 6px 16px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .clips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .clip { display: grid; gap: 10px; margin: 0; }
+  .frame {
+    position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: var(--radius); overflow: hidden;
+    background: var(--frame-a); color: var(--frame-ink);
+  }
+  .clip:nth-child(3n+2) .frame { background: var(--frame-b); }
+  .clip:nth-child(3n) .frame { background: var(--frame-c); }
+  .frame video, .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .frame .rec { position: absolute; top: 12px; inset-inline-start: 12px; display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; font-variant-numeric: tabular-nums; direction: ltr; }
+  .frame .rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--berry); }
+  .frame .kind { position: absolute; top: 10px; inset-inline-end: 12px; font-size: 0.8rem; font-weight: 700; background: color-mix(in srgb, var(--paper) 70%, transparent); color: var(--ink); padding: 2px 10px; border-radius: 999px; }
+  .frame .play { position: absolute; inset: 0; margin: auto; width: 60px; height: 60px; border-radius: 50%; background: color-mix(in srgb, var(--paper) 75%, transparent); }
+  .frame .play::after { content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--ink); }
+  .frame .hook { position: absolute; inset-inline: 14px; bottom: 14px; font-weight: 800; font-size: 1.05rem; line-height: 1.3; }
+  .clip figcaption { display: grid; gap: 2px; }
+  .clip figcaption b { font-size: 1.05rem; }
+  .clip figcaption span { color: var(--ink-soft); font-size: 0.95rem; }
+
+  /* Niches + brands */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .split > div { min-width: 0; display: grid; gap: 18px; align-content: start; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips span { font-family: var(--font-display); font-size: 1.9rem; line-height: 1; padding: 8px 18px 6px; border: 2px solid var(--ink); border-radius: 999px; }
+  .logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .logos span { display: grid; place-items: center; min-height: 72px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-weight: 700; text-align: center; padding: 8px; }
+
+  /* Process: a real sequence, so it is numbered */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; counter-reset: step; }
+  .steps li { counter-increment: step; display: grid; gap: 6px; align-content: start; border-top: 2px solid var(--ink); padding-top: 14px; }
+  .steps li::before { content: counter(step); font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--berry); }
+  .steps b { font-size: 1.1rem; }
+  .steps span { color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* Packages */
+  .packages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .pkg { display: grid; gap: 16px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+  .pkg.featured { border: 2px solid var(--berry); background: var(--paper-2); }
+  .pkg h3 { font-size: var(--step-2); }
+  .pkg .price { font-family: var(--font-display); font-size: 3rem; line-height: 1; font-variant-numeric: tabular-nums; }
+  .pkg .price small { font-family: var(--font-body); font-size: 0.95rem; color: var(--ink-soft); font-weight: 600; }
+  .pkg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .pkg li { padding-inline-start: 22px; position: relative; }
+  .pkg li::before { content: ""; position: absolute; inset-inline-start: 0; top: 0.6em; width: 10px; height: 10px; border-radius: 3px; background: var(--berry); }
+  .tag { justify-self: start; font-size: 0.8rem; font-weight: 700; background: var(--berry); color: var(--on-berry); padding: 2px 10px; border-radius: 999px; }
+  .addons { margin-top: 24px; color: var(--ink-soft); }
+  .addons b { color: var(--ink); }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .contact > div { min-width: 0; display: grid; gap: 18px; }
+  .channels { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .channels li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; flex-wrap: wrap; }
+  .channels .label { font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; display: block; }
+  .channels .value { font-weight: 700; direction: ltr; unicode-bidi: isolate; user-select: all; overflow-wrap: anywhere; }
+  .channels button { font: 600 0.9rem var(--font-body); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+
+  footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--ink-soft); font-size: 0.9rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .hero, .split, .contact { grid-template-columns: 1fr; }
+    .hero .phone { order: -1; width: min(240px, 70%); }
+    .why, .packages { grid-template-columns: 1fr; }
+    .clips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps { grid-template-columns: 1fr; }
+    .nav { display: none; }
+  }
+  @media (max-width: 420px) {
+    .clips { gap: 12px; }
+    .frame .hook { font-size: 0.92rem; }
+    .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  איך לערוך:
+  1. החליפו כל טקסט בסוגריים מרובעים [ ... ] בפרטים שלך.
+  2. סרטונים: שימו קובץ mp4 בתיקייה videos/ והחליפו את <span class="play"></span> של הכרטיס בשורה:
+       <video src="videos/my-clip.mp4" muted loop playsinline controls preload="metadata"></video>
+  3. תמונת פרופיל: שימו קובץ בשם me.jpg ליד הקובץ הזה והחליפו את ה-div "portrait-hint" בשורה:
+       <img src="me.jpg" alt="[השם שלך]">
+-->
+<div class="site" dir="rtl" lang="he">
+  <div class="wrap">
+
+    <header class="top">
+      <a class="brand" href="#top">[השם שלך]<small>UGC CREATOR</small></a>
+      <nav class="nav" aria-label="ניווט">
+        <a href="#work">עבודות</a>
+        <a href="#packages">חבילות</a>
+        <a href="#process">איך זה עובד</a>
+        <a href="#contact">צרו קשר</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <div class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">תוכן UGC למותגים</span>
+          <h1>סרטונים שעוצרים את <span class="mark">הגלילה</span> ומביאים מכירות</h1>
+          <p class="lead">סרטונים אותנטיים בגובה העיניים: ביקורות, אנבוקסינג ומדריכי שימוש, מוכנים לאינסטגרם, לטיקטוק ולמודעות ממומנות.</p>
+          <ul class="facts">
+            <li>[עיר]</li>
+            <li>[גיל]</li>
+            <li>עברית ואנגלית</li>
+            <li>מסירה תוך 5–7 ימי עבודה</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#contact">בואו נעבוד יחד</a>
+            <a class="btn" href="#work">לצפייה בעבודות</a>
+          </div>
+        </div>
+
+        <div class="phone" aria-label="תמונת פרופיל">
+          <div class="portrait-hint"><div><span>☺</span>כאן תבוא התמונה שלך</div></div>
+          <div class="side" aria-hidden="true"><i></i>2.4K<i></i>318<i></i></div>
+          <p class="caption">@[שם_משתמש] · הקרם הזה שינה לי את הבוקר</p>
+        </div>
+      </div>
+
+      <section aria-labelledby="why-title">
+        <div class="section-head">
+          <span class="eyebrow">למה UGC</span>
+          <h2 id="why-title">תוכן שנראה כמו המלצה של חברה</h2>
+        </div>
+        <div class="why">
+          <div>
+            <h3>אמון</h3>
+            <p>לקוחות סומכים יותר על אדם אמיתי שמשתמש במוצר מאשר על פרסומת מלוטשת.</p>
+          </div>
+          <div>
+            <h3>ביצועים</h3>
+            <p>סרטון אנכי עם הוק חזק בשלוש השניות הראשונות מתאים בדיוק למודעות ברשתות.</p>
+          </div>
+          <div>
+            <h3>גמישות</h3>
+            <p>אתם מקבלים את הסרטונים ומפרסמים אותם בעמוד שלכם, באתר או בקמפיין, בלי תלות בעוקבים שלי.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" aria-labelledby="work-title">
+        <div class="section-head">
+          <span class="eyebrow">תיק עבודות</span>
+          <h2 id="work-title">כמה מהסרטונים שלי</h2>
+        </div>
+
+        <div class="filters" role="group" aria-label="סינון לפי תחום">
+          <button type="button" id="f-all" data-filter="all" aria-pressed="true">הכל</button>
+          <button type="button" id="f-beauty" data-filter="beauty" aria-pressed="false">ביוטי</button>
+          <button type="button" id="f-food" data-filter="food" aria-pressed="false">אוכל</button>
+          <button type="button" id="f-home" data-filter="home" aria-pressed="false">בית ולייפסטייל</button>
+        </div>
+
+        <div class="clips">
+          <figure class="clip" data-cat="beauty">
+            <div class="frame">
+              <span class="rec">00:24</span><span class="kind">ביקורת מוצר</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"חיפשתי סרום כזה שנתיים"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>סרום פנים · ביקורת כנה</span></figcaption>
+          </figure>
+          <figure class="clip" data-cat="home">
+            <div class="frame">
+              <span class="rec">00:18</span><span class="kind">אנבוקסינג</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"תראו מה הגיע לי בדואר"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>מצעים · פתיחת חבילה</span></figcaption>
+          </figure>
+          <figure class="clip" data-cat="food">
+            <div class="frame">
+              <span class="rec">00:30</span><span class="kind">מתכון</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"ארוחת בוקר ב-5 דקות"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>גרנולה · מדריך הכנה</span></figcaption>
+          </figure>
+          <figure class="clip" data-cat="beauty">
+            <div class="frame">
+              <span class="rec">00:15</span><span class="kind">לפני / אחרי</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"שבוע אחד של שימוש"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>מסכת שיער · תוצאות</span></figcaption>
+          </figure>
+          <figure class="clip" data-cat="home">
+            <div class="frame">
+              <span class="rec">00:27</span><span class="kind">יום בחיי</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"הבוקר שלי מתחיל ככה"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>מכונת קפה · לייפסטייל</span></figcaption>
+          </figure>
+          <figure class="clip" data-cat="food">
+            <div class="frame">
+              <span class="rec">00:21</span><span class="kind">טעימה</span>
+              <span class="play" aria-hidden="true"></span>
+              <p class="hook">"לא ציפיתי שזה יהיה כל כך טוב"</p>
+            </div>
+            <figcaption><b>[שם המותג]</b><span>חטיף חלבון · תגובה ראשונה</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="niche-title">
+        <div class="split">
+          <div>
+            <span class="eyebrow">התחומים שלי</span>
+            <h2 id="niche-title">תחומי תוכן</h2>
+            <div class="chips"><span>ביוטי</span><span>טיפוח</span><span>אוכל</span><span>בית</span><span>אמהות</span><span>אופנה</span></div>
+          </div>
+          <div>
+            <span class="eyebrow">עבדתי עם</span>
+            <h2>מותגים</h2>
+            <div class="logos">
+              <span>[לוגו מותג]</span><span>[לוגו מותג]</span><span>[לוגו מותג]</span>
+              <span>[לוגו מותג]</span><span>[לוגו מותג]</span><span>[לוגו מותג]</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" aria-labelledby="process-title">
+        <div class="section-head">
+          <span class="eyebrow">איך זה עובד</span>
+          <h2 id="process-title">מהבריף ועד הסרטון המוכן</h2>
+        </div>
+        <ol class="steps">
+          <li><b>בריף</b><span>אתם שולחים את המוצר, קהל היעד והמסר.</span></li>
+          <li><b>תסריט</b><span>הוקים ותסריט קצר לאישור שלכם.</span></li>
+          <li><b>צילום</b><span>צילום בבית או בחוץ, בתאורה טבעית.</span></li>
+          <li><b>עריכה</b><span>כתוביות, מוזיקה וחיתוכים בקצב של הרשת.</span></li>
+          <li><b>מסירה</b><span>קבצי MP4 אנכיים וסבב תיקונים אחד.</span></li>
+        </ol>
+      </section>
+
+      <section id="packages" aria-labelledby="packages-title">
+        <div class="section-head">
+          <span class="eyebrow">חבילות</span>
+          <h2 id="packages-title">בחרו את מה שמתאים לכם</h2>
+        </div>
+        <div class="packages">
+          <article class="pkg">
+            <h3>סרטון בודד</h3>
+            <p class="price">₪[מחיר] <small>לסרטון</small></p>
+            <ul>
+              <li>סרטון אחד, 15–30 שניות</li>
+              <li>הוק אחד</li>
+              <li>כתוביות בעברית</li>
+              <li>סבב תיקונים אחד</li>
+            </ul>
+          </article>
+          <article class="pkg featured">
+            <span class="tag">הכי מבוקש</span>
+            <h3>חבילת 3 סרטונים</h3>
+            <p class="price">₪[מחיר] <small>לחבילה</small></p>
+            <ul>
+              <li>3 סרטונים בסגנונות שונים</li>
+              <li>3 וריאציות הוק לכל סרטון</li>
+              <li>כתוביות ומוזיקה</li>
+              <li>זכויות שימוש אורגני ל-3 חודשים</li>
+            </ul>
+          </article>
+          <article class="pkg">
+            <h3>חבילה חודשית</h3>
+            <p class="price">₪[מחיר] <small>לחודש</small></p>
+            <ul>
+              <li>6 סרטונים בחודש</li>
+              <li>תכנון תוכן משותף</li>
+              <li>קבצים גולמיים</li>
+              <li>עדיפות במועדי מסירה</li>
+            </ul>
+          </article>
+        </div>
+        <p class="addons"><b>תוספות:</b> זכויות לשימוש במודעות ממומנות · וריאציות הוק נוספות · קבצים גולמיים · מסירה מהירה תוך 72 שעות</p>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="contact">
+          <div>
+            <span class="eyebrow">צרו קשר</span>
+            <h2 id="contact-title">יש לכם מוצר? <span class="mark">בואו נדבר</span></h2>
+            <p class="lead">ספרו לי על המותג ועל מה שאתם מחפשים, ואחזור אליכם עם רעיונות והצעת מחיר תוך יום עבודה.</p>
+          </div>
+          <div>
+            <ul class="channels">
+              <li><div><span class="label">אימייל</span><a class="value" href="mailto:you@example.com">you@example.com</a></div><button type="button" id="copy-email" data-copy="you@example.com">העתקה</button></li>
+              <li><div><span class="label">וואטסאפ</span><a class="value" href="https://wa.me/972500000000" target="_blank" rel="noopener">050-000-0000</a></div><button type="button" id="copy-phone" data-copy="050-000-0000">העתקה</button></li>
+              <li><div><span class="label">אינסטגרם</span><a class="value" href="https://instagram.com/" target="_blank" rel="noopener">@[שם_משתמש]</a></div><button type="button" id="copy-ig" data-copy="@[שם_משתמש]">העתקה</button></li>
+              <li><div><span class="label">טיקטוק</span><a class="value" href="https://tiktok.com/" target="_blank" rel="noopener">@[שם_משתמש]</a></div><button type="button" id="copy-tt" data-copy="@[שם_משתמש]">העתקה</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© [השם שלך] · UGC Creator</span>
+      <a href="#top">חזרה למעלה</a>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // Portfolio filter
+  var filterButtons = document.querySelectorAll('.filters button');
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.dataset.filter;
+      filterButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      document.querySelectorAll('.clip').forEach(function (clip) {
+        clip.hidden = f !== 'all' && clip.dataset.cat !== f;
+      });
+    });
+  });
+
+  // Copy buttons, with a select-the-text fallback when the clipboard is refused
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.dataset.copy;
+      var done = function () { btn.textContent = 'הועתק'; setTimeout(function () { btn.textContent = 'העתקה'; }, 1600); };
+      var fallback = function () {
+        var value = btn.parentElement.querySelector('.value');
+        var range = document.createRange();
+        range.selectNodeContents(value);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = 'סמנו והעתיקו';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+</script>
+</body>
+</html>
